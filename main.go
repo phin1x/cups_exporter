@@ -4,7 +4,7 @@ import (
 	"flag"
 	"github.com/go-logr/logr"
 	"github.com/go-logr/zapr"
-	"github.com/phin1x/cups-exporter/pkg"
+	"github.com/phin1x/cups-exporter/internal"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
@@ -29,7 +29,7 @@ func main() {
 	flag.Parse()
 
 	log.Info("starting cups exporter")
-	exporter, err := pkg.NewExporter(opts.CupsUri, log)
+	exporter, err := internal.NewExporter(opts.CupsUri, log)
 	if err != nil {
 		log.Error(err, "failed to create the exporter")
 		os.Exit(1)
